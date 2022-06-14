@@ -1,0 +1,23 @@
+{
+    "name": "dreamteamlayout",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index,js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts":{
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": " "
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "inquirer": "^8.2.2",
+      "jest": "^27.5.1"
+    }
+}
