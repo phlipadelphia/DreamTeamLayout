@@ -18,7 +18,7 @@ function addToTeam() {
         {
             type: "list",
             name: "addEmployee",
-            message: "Add an employee, or select 'Complete'.",
+            message: "Add employee(s) by role and select 'Complete'.",
             choices: [
                 "Manager",
                 "Engineer",
