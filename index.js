@@ -1,16 +1,12 @@
-// creating link to the html generated
-const generateHTML = require('./src/generateHTML');
 // const team profiles and node modules
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 // const node modules and team
 const inquirer = require("inquirer");
-const path = require("path");
 const fs = require("fs");
 
 const blankPage = "";
-
 const teamArray = [];
 addToTeam();
 
@@ -65,7 +61,7 @@ const managerData = () => {
         message: "What is the office number of your manager?"
        }
     ]).then(function(data) {
-        const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.managerOffice)
+        const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.managerPhone)
         teamArray.push(manager);
         addToTeam();
     });
@@ -119,11 +115,11 @@ const internData = () => {
            },
            {
             type: "input",
-            name: "internGithub",
-            message: "What is the Github username of your intern?"
+            name: "internSchool",
+            message: "What school did your intern attended?"
            } 
     ]).then(function(data) {
-        const intern = new Intern(data.internName, data.internId, data.internEmail, data.internGithub)
+        const intern = new Intern(data.internName, data.internId, data.internEmail, data.internSchool)
         teamArray.push(intern);
         addToTeam();
     });
@@ -172,7 +168,46 @@ function renderTeam() {
     </head>
     
     <body>
-        <h1 id="title">My Dream Team!</h1>>
+        <header>
+            <nav class="navbar" id="navbar">
+                <span class="navbar-brand mb-0 h1 w-100 text-center" id="navbar-text">My Dream Team!</span>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container">
+                <div class="row justify-content-center" id="team-cards">
+
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${role.name}: Manager</h5>
+                    <h6 class="card-text">ID: ${role.id}</h6>
+                    <h6 class="card-text">Email: ${role.email}</h6>
+                    <h6 class="card-text">Office Phone Number: ${role.phone}</h6>
+                </div>
+                </div>
+
+                <div class="card">            
+                <div class="card-body">
+                    <h5 class="card-title">${role.name}: Intern</h5>
+                    <h6 class="card-text">ID: ${role.id}</h6>
+                    <h6 class="card-text">Email: ${role.email}</h6>
+                    <h6 class="card-text">GitHub username: ${role.school}</h6>
+                </div>
+                </div>
+
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${role.name}: Engineer</h5>
+                    <h6 class="card-text">ID: ${role.id}</h6>
+                    <h6 class="card-text">Email: ${role.email}</h6>
+                    <h6 class="card-text">Graduated from: ${role.github}</h6>
+                </div>
+                </div>
+                
+                </div>
+            </div>
+        </main>
         ${blankPage}
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -183,12 +218,10 @@ function renderTeam() {
     fs.writeFileSync('./dist/index.html', dreamTeamHTML, function(err) {
         if (err) {
             console.log(err);
-            return
         } else {
             console.log("Your Dream Team Layout has been successfully created! Check out the index.html!")
         }
+        return
         }
     )}
 )};
-
-renderTeam();
