@@ -1,19 +1,20 @@
 // const the Intern constructor
 const Intern = require('../lib/Intern');
-// test the constructor
-test("Creating An Intern Object", () => {
-    const intern = new Intern('Philly, 33, 123fake@madeup.com', 'UofA');
-    expect(intern.school).toEqual(expect.any(String));
-});
-
 // testing the constructor and the methods
-
-test("Check Intern School", () => {
-    const intern = new Intern('Philly, 33, 123fake@madeup.com', 'UofA');
-    expect(intern.getSchool()).toEqual(expect.stringContaining(intern.school.toString()))
+test("Creating a new intern", () => {
+    const testSchool = "Name of School";
+    const employeeInit = new Intern("Philly", 12, "phillip.t.mock@gmail.com", testSchool);
+    expect(employeeInit.school).toBe(testSchool);
 });
-
-test("Check Intern Role", () => {
-    const intern = new Intern('Philly, 33, 123fake@madeup.com', 'UofA');
-    expect(intern.getRole()).toEqual("Intern")
+// test getSchool method
+test("Get school via getSchool method", () => {
+    const testSchool = "Name of School";
+    const employeeInit = new Intern("Philly", 12, "phillip.t.mock@gmail.com", testSchool);
+    expect(employeeInit.getSchool()).toBe(testSchool);
+});
+// test getRole method
+test("Test role via getRole method", () => {
+    const returnValue = "Intern";
+    const employeeInit = new Intern("Philly", 12, "phillip.t.mock@gmail.com", "Name of School");
+    expect(employeeInit.getRole()).toBe(returnValue);
 });

@@ -1,19 +1,20 @@
 // const the Engineer constructor
 const Engineer = require('../lib/Engineer');
-// test the constructor
-test("Creating An Engineer Object", () => {
-    const engineer = new Engineer('Philly, 33, 123fake@madeup.com', 'phlipadelphia');
-    expect(engineer.github).toEqual(expect.any(String));
+// test the constructor and the methods
+test("Creating a a github", () => {
+    const testGithub = "phlipadelphia";
+    const employeeInit = new Engineer("Philly", 12, "phillip.t.mock@gmail.com", testGithub);
+    expect(employeeInit.github).toBe(testGithub);
 });
-
-// testing the constructor and the methods
-
-test("Check Engineer Github", () => {
-    const engineer = new Engineer('Philly, 33, 123fake@madeup.com', 'phlipadelphia');
-    expect(engineer.getGithub()).toEqual(expect.stringContaining(engineer.github.toString()))
+// test getGithub method
+test("Get github via getGithub method", () => {
+    const testGithub = "phlipadelphia";
+    const employeeInit = new Engineer("Philly", 12, "phillip.t.mock@gmail.com", testGithub);
+    expect(employeeInit.getGithub()).toBe(testGithub);
 });
-
-test("Check Employee Role", () => {
-    const employee = new Employee('Philly, 33, 123fake@madeup.com', 'phlipadelphia');
-    expect(employee.getRole()).toEqual("Engineer")
+// test getRole method
+test("Test role via getRole method", () => {
+    const returnValue = "Engineer";
+    const employeeInit = new Engineer("Philly", 12, "phillip.t.mock@gmail.com", "phlipadelphia");
+    expect(employeeInit.getRole()).toBe(returnValue);
 });

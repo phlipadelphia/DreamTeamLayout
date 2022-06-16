@@ -122,7 +122,7 @@ const internData = () => {
            } 
     ]).then(function(data) {
         const intern = new Intern(data.internName, data.internId, data.internEmail, data.internGithub)
-        teamArray.push(engineer);
+        teamArray.push(intern);
         addToTeam();
     });
 }
