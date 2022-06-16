@@ -9,6 +9,8 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+const blankPage = "";
+
 const teamArray = [];
 addToTeam();
 
@@ -127,13 +129,66 @@ const internData = () => {
     });
 }
 // creating the function to generate the HTML page file using file system
-const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
+function renderTeam() {
+    console.log(teamArray)
+    teamArray.forEach(role => {
+        if (role.getRole() === "manager") {
+            blankPage += `<div class="card">
+        <div class="card-body">
+            <h5 class="card-title">${role.name}: Manager</h5>
+            <h6 class="card-text">ID: ${role.id}</h6>
+            <h6 class="card-text">Email: ${role.email}</h6>
+            <h6 class="card-text">Office Phone Number: ${role.phone}</h6>
+        </div>
+        </div>`
+        } else if (role.getRole() === "intern") {
+            blankPage += `<div class="card">
+        <div class="card-body">
+            <h5 class="card-title">${role.name}: Engineer</h5>
+            <h6 class="card-text">ID: ${role.id}</h6>
+            <h6 class="card-text">Email: ${role.email}</h6>
+            <h6 class="card-text">Graduated from: ${role.school}</h6>
+        </div>
+        </div>`
+        } else if (role.getRole() === "engineer") {
+            blankPage += `<div class="card">
+        <div class="card-body">
+            <h5 class="card-title">${role.name}: Intern</h5>
+            <h6 class="card-text">ID: ${role.id}</h6>
+            <h6 class="card-text">Email: ${role.email}</h6>
+            <h6 class="card-text">GitHub username: ${role.github}</h6>
+        </div>
+        </div>`
+        }
+    
+    const dreamTeamHTML = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
+        <title>Team Profile</title>
+    </head>
+    
+    <body>
+        <h1 id="title">My Dream Team!</h1>>
+        ${blankPage}
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        </body>
+    </html>`;
+
+    fs.writeFileSync('./dist/index.html', dreamTeamHTML, function(err) {
         if (err) {
             console.log(err);
-            return;
+            return
         } else {
-            console.log("Your Dream Team Layout has been successfully created! Look at the index.html!")
+            console.log("Your Dream Team Layout has been successfully created! Check out the index.html!")
         }
-    })
-};
+        }
+    )}
+)};
+
+renderTeam();
