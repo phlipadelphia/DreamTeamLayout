@@ -12,3 +12,5 @@ The following prompts will ask for information for any new manager, engineer or 
 Go to `Complete` once finished to render the `index.html` which you will then find in the `dist` folder. 
 
 ## Video Walkthrough
+
+ https://drive.google.com/file/d/1vMRWox-vHWs_oQqG7pmbGb5ZXr1dA35A/view
